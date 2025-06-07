@@ -24,8 +24,13 @@ app.use(cors());
 connectDB();
 
 // api endpoints
+console.log("Registering /api/food");
 app.use('/api/food', foodRouter);
+
+console.log("Registering /images");
 app.use('/images', express.static("uploads"));
+
+console.log("Registering /api/order");
 app.use('/api/order', orderRouter);
 
 if (process.env.NODE_ENV === "production") {
