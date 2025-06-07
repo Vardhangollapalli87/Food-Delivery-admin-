@@ -7,29 +7,26 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import path from "path";
 
-
-
 dotenv.config();
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//app config
+// app config
 const app = express();
 const port = process.env.PORT;
 
-
-//middleware
-app.use(express.json({"limit":"10 mb"}));
+// middleware
+app.use(express.json({ "limit": "10mb" }));
 app.use(cors());
 
-//db connection
+// db connection
 connectDB();
 
-
-//api endpoints
-app.use('/api/food',foodRouter);
-app.use('/images',express.static("uploads"));
-app.use('/api/order',orderRouter)
+// api endpoints
+app.use('/api/food', foodRouter);
+app.use('/images', express.static("uploads"));
+app.use('/api/order', orderRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../admin/dist")));
@@ -39,6 +36,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(port,()=>{
-    console.log(`Server is running on http://localhost:${port}`);
-})
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
