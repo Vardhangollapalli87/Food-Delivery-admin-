@@ -1,0 +1,24 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
+    background: #001313;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo-img{
+    width: max(13vw,120px);
+}
+.logo-context{
+    font-size:max(1.2vw,12px);
+    font-weight: 600;
+    color: #d6d3d3d0;
+    margin-left:-10%;
+}
+.navbar .profile{
+    width: 40px;
+}

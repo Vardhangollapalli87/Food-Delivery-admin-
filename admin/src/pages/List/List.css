@@ -1,0 +1,101 @@
+.list {
+  width: 80%;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+  color: #444;
+  font-size: 16px;
+}
+
+.list-table {
+  overflow-x: auto;
+}
+
+.list > p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #1a237e;
+}
+
+.list-table-format {
+  display: grid;
+  grid-template-columns: 80px 2fr 1.2fr 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #ececec;
+  font-size: 1rem;
+  background: #fafbfc;
+}
+
+.list-table-format.title {
+  background: #e8eaf6;
+  font-weight: 700;
+  color: #1a237e;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #c5cae9;
+}
+
+.list-table-format img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #f5f5f5;
+}
+
+.list-table-format.title,.list-table-format{
+    width: 100%;
+}
+
+.list-table-format:last-child {
+  border-bottom: none;
+}
+.list-table-format p:last-child{
+    margin-left: 20%;
+    color: tomato;
+    width:22px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid rgb(150, 147, 147);
+    text-align: center;
+}
+.list-table-format p:last-child:active{
+    background-color: rgb(243, 84, 84);
+    color:#444;
+}
+
+
+@media (max-width:550px) {
+    
+    .list-table-format.title,.list-table-format{
+        width: 200%;
+    }
+    .list-table {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #c5cae9 #f5f5f5;
+    padding-bottom: 20px;
+    }
+
+    /* For Chrome, Edge, Safari */
+    .list-table::-webkit-scrollbar {
+    height: 8px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    }
+
+    .list-table::-webkit-scrollbar-thumb {
+    background: #c5cae9;
+    border-radius: 8px;
+    }
+
+    .list-table::-webkit-scrollbar-thumb:hover {
+    background: #9fa8da;
+    }
+
+}
