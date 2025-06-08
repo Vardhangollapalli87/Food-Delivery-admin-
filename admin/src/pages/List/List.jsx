@@ -9,7 +9,7 @@ const List = ({url}) => {
 
 
   const fetchList = async()=>{
-    const response = await axios.get(`${url}/api/food/list`);
+    const response = await axios.get(`${url}/food/list`);
     if(response.data.success){
       setList(response.data.data);
     }
@@ -20,7 +20,7 @@ const List = ({url}) => {
 
 
   const deleteItem = async(foodId)=>{
-    const response = await axios.post(`${url}/api/food/remove`,{id:foodId});
+    const response = await axios.post(`${url}/food/remove`,{id:foodId});
     await fetchList();
 
     if(response.data.success){
@@ -50,7 +50,7 @@ const List = ({url}) => {
         {list.map((item, index) =>{
             return(
               <div key={index} className="list-table-format">
-                <img src={`${url}/images/`+item.image} alt="food" />
+                <img src={item.image} alt="food" />
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>${item.price}</p>

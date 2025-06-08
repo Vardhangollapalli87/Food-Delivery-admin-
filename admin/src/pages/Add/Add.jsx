@@ -19,38 +19,53 @@ const Add = ({url}) => {
     setData(data=>({...data,[event.target.name]:event.target.value}))
   }
 
+  
   const onSubmitHandler = async(event)=>{
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('name',data.name);
-      formData.append('description',data.description);
-      formData.append('price',Number(data.price));
-      formData.append('category',data.category);
-      if(image){
-        formData.append('image',image);
-      }
+  
 
-      const response = await axios.post(`${url}/api/food/add`,formData);
+    event.preventDefault();
 
-      if(response.data.success){
-        setData({
-          name:'',
-          description:'',
-          price:'',
-          category:"Salad",
-        });
-        setImage(false);
-        
-        toast.success("FoodItem Added !")
+
+    if(image){
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = async ()=>{
+        const base64Image = reader.result;
+
+        const sendData = {
+          name:data.name,
+          description:data.description,
+          price:Number(data.price),
+          category:data.category,
+          image:base64Image,
+        }        
+
+        const response = await axios.post(`${url}/food/add`,sendData);
+
+        if(response.data.success){
+          setData({
+            name:'',
+            description:'',
+            price:'',
+            category:"Salad",
+          });
+          setImage(false);
+          toast.success("FoodItem Added !")
+        }
+        else{
+          toast.error("Failed !");
+        }
       }
-      else{
-        toast.error("Failed !");
-      }
+    } else {
+      toast.error("Please add the foodPic");
+    }
+  
   }
 
   return (
     <div className='add'>
-      <form className='flex-col' onSubmit={onSubmitHandler}>
+      <form className='flex-col' onSubmit={e=>onSubmitHandler(e)}>
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
           <label htmlFor="image">

@@ -12,7 +12,7 @@ const Orders = ({url}) => {
 
   const fetchAllOrders = async()=>{
 
-    const response = await axios.get(url+'/api/order/list');
+    const response = await axios.get(url+'/order/list');
 
     if(response.data.success){
       setOrders(response.data.data);
@@ -25,7 +25,7 @@ const Orders = ({url}) => {
 
 
   const statusHandler = async (e,orderId) =>{
-    const response = await axios.post(url+'/api/order/status',{
+    const response = await axios.post(url+'/order/status',{
       orderId,
       status:e.target.value,
     })
@@ -57,7 +57,7 @@ const Orders = ({url}) => {
                   }
                 })}
               </p>
-              <p className='ordeer-item-name'>{order.address.firstName+" "+order.address.lastName}</p>
+              <p className='order-item-name'>{order.address.firstName+" "+order.address.lastName}</p>
               <div className='order-item-address'>
                 <p>{order.address.street}</p>
                 <p>{order.address.city+', '+order.address.state+', '+order.address.country+', '+order.address.zipcode}</p>
