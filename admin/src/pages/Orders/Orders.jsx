@@ -6,26 +6,32 @@ import axios from 'axios'
 import {assets} from '../../assets/assets.js' 
 import { useEffect } from 'react'
 
-const Orders = ({url}) => {
+const Orders = () => {
 
   const [orders,setOrders] = useState([]);
 
   const fetchAllOrders = async()=>{
 
-    const response = await axios.get(url+'/order/list');
+    try {
+      const response = await axios.get('/api/order/list');
 
-    if(response.data.success){
-      setOrders(response.data.data);
+        if(response.data.success){
+          setOrders(response.data.data);
+        }else{
+          console.log(response);
+        }
+      // ...
+    } catch (err) {
+      console.log(err.response ? err.response.data : err.message);
+      toast.error("Failed");
     }
-    else{
-      toast.error("Error");
-    }
+
 
   }
 
 
   const statusHandler = async (e,orderId) =>{
-    const response = await axios.post(url+'/order/status',{
+    const response = await axios.post('/api/order/status',{
       orderId,
       status:e.target.value,
     })

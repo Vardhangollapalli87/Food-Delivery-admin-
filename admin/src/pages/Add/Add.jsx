@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import axios from 'axios';
 import {toast} from 'react-toastify';
 
-const Add = ({url}) => {
+const Add = () => {
 
 
   const [image,setImage] = useState(false);
@@ -41,7 +41,7 @@ const Add = ({url}) => {
           image:base64Image,
         }        
 
-        const response = await axios.post(`${url}/food/add`,sendData);
+        const response = await axios.post(`/api/food/add`,sendData);
 
         if(response.data.success){
           setData({
